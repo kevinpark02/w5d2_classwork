@@ -221,6 +221,6 @@ def colleagues_of_garfunkel
     ON
     castings.actor_id = actors.id
   WHERE
-    
+
   SQL
 end
