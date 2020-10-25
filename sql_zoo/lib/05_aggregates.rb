@@ -12,10 +12,6 @@ require_relative './sqlzoo.rb'
 
 def example_sum
   execute(<<-SQL)
-    SELECT
-      SUM(population)
-    FROM
-      countries
   SQL
 end
 
@@ -37,7 +33,7 @@ def africa_gdp
   FROM
     countries
   WHERE
-    continent = 'Africa'
+    continent = 'Africa';
   SQL
 end
 
@@ -45,7 +41,7 @@ def area_count
   # How many countries have an area of more than 1,000,000?
   execute(<<-SQL)
   SELECT
-    COUNT(area)
+    COUNT(name)
   FROM
     countries
   WHERE
@@ -69,11 +65,12 @@ def country_counts
   # For each continent show the continent and number of countries.
   execute(<<-SQL)
   SELECT
-    continent, COUNT(*)
+    continent, COUNT(name)
   FROM
     countries
   GROUP BY
     continent;
+
   SQL
 end
 
@@ -82,7 +79,7 @@ def populous_country_counts
   # populations of at least 10 million.
   execute(<<-SQL)
   SELECT
-    continent, COUNT(*)
+    continent, COUNT(name)
   FROM
     countries
   WHERE
@@ -101,7 +98,8 @@ def populous_continents
     countries
   GROUP BY
     continent
-    HAVING
-      SUM(population) >= 100000000;
+  HAVING
+    SUM(population) >= 100000000;
+
   SQL
 end

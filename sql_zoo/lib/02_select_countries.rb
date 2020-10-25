@@ -12,12 +12,7 @@ require_relative './sqlzoo.rb'
 
 def example_select
   execute(<<-SQL)
-    SELECT
-      population
-    FROM
-      countries
-    WHERE
-      name = 'France'
+  
   SQL
 end
 
@@ -39,11 +34,12 @@ def high_population_gdps
   # of at least 200 million.
   execute(<<-SQL)
   SELECT
-    name, gdp/population AS GDP
+    name, gdp / population AS per_capita
   FROM
     countries
   WHERE
-    population >= 200000000;
+    population > 200000000;
+
   SQL
 end
 
@@ -52,12 +48,12 @@ def population_in_millions
   # 'South America'. Divide the population by 1,000,000 to get population in
   # millions.
   execute(<<-SQL)
-  SELECT
-    name, population/1000000 
+  Select
+    name, population / 1000000 AS pop_in_millions
   FROM
     countries
   WHERE
-    continent = 'South America';
+    continent = 'South America' 
   SQL
 end
 
@@ -65,7 +61,7 @@ def name_and_population
   # Show the name and population for 'France', 'Germany', and 'Italy'
   execute(<<-SQL)
   SELECT
-    name,population
+    name, population
   FROM
     countries
   WHERE
@@ -81,6 +77,6 @@ def united_we_stand
   FROM
     countries
   WHERE
-    name LIKE('%United%');
+    name LIKE ('United%');
   SQL
 end
