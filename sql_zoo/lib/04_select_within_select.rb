@@ -16,6 +16,7 @@ require_relative './sqlzoo.rb'
 
 def example_select_with_subquery
   execute(<<-SQL)
+  
   SQL
 end
 
@@ -34,7 +35,7 @@ def larger_than_russia
         countries
       WHERE
         name = 'Russia'
-    );    
+    )
   SQL
 end
 
@@ -47,15 +48,14 @@ def richer_than_england
   FROM
     countries
   WHERE
-    continent = 'Europe' AND
-    gdp / population > (
+    gdp/population > (
       SELECT
-        gdp / population
+        gdp/population
       FROM
         countries
       WHERE
         name = 'United Kingdom'
-    );
+    ) AND continent = 'Europe'
   SQL
 end
 
@@ -65,7 +65,7 @@ def neighbors_of_certain_b_countries
   execute(<<-SQL)
   SELECT
     name, continent
-  FROM 
+  FROM
     countries
   WHERE
     continent IN (
@@ -75,7 +75,8 @@ def neighbors_of_certain_b_countries
         countries
       WHERE
         name IN ('Belize', 'Belgium')
-    );
+    )
+
   SQL
 end
 
@@ -102,7 +103,7 @@ def population_constraint
         countries
       WHERE
         name = 'Poland'
-    );
+    )
   SQL
 end
 
@@ -123,7 +124,7 @@ def sparse_continents
       FROM
         countries
       WHERE
-        population >= 25000000
-    );
+        population >= 25000000 
+    )
   SQL
 end

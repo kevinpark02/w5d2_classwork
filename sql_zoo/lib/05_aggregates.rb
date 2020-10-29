@@ -21,7 +21,8 @@ def continents
   SELECT
     DISTINCT continent
   FROM
-    countries;
+    countries
+
   SQL
 end
 
@@ -33,7 +34,8 @@ def africa_gdp
   FROM
     countries
   WHERE
-    continent = 'Africa';
+    continent = 'Africa'
+
   SQL
 end
 
@@ -46,6 +48,7 @@ def area_count
     countries
   WHERE
     area > 1000000;
+
   SQL
 end
 
@@ -57,7 +60,8 @@ def group_population
   FROM
     countries
   WHERE
-    name IN ('France', 'Germany', 'Spain');
+    name IN ('France', 'Germany', 'Spain')
+
   SQL
 end
 
@@ -69,7 +73,7 @@ def country_counts
   FROM
     countries
   GROUP BY
-    continent;
+    continent
 
   SQL
 end
@@ -79,13 +83,15 @@ def populous_country_counts
   # populations of at least 10 million.
   execute(<<-SQL)
   SELECT
-    continent, COUNT(name)
+   continent, COUNT(name)
   FROM
     countries
   WHERE
     population >= 10000000
   GROUP BY
-    continent;
+    continent
+
+
   SQL
 end
 

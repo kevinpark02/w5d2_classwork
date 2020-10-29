@@ -31,7 +31,7 @@ def films_from_sixty_two
   # List the films where the yr is 1962 [Show id, title]
   execute(<<-SQL)
   SELECT
-    movies.id, movies.title
+    id, title
   FROM
     movies
   WHERE
@@ -44,11 +44,12 @@ def year_of_kane
   # Give year of 'Citizen Kane'.
   execute(<<-SQL)
   SELECT
-    movies.yr
+    yr
   FROM
     movies
   WHERE
     title = 'Citizen Kane';
+
   SQL
 end
 
@@ -58,13 +59,14 @@ def trek_films
   # year.
   execute(<<-SQL)
   SELECT
-    movies.id, movies.title, movies.yr
+    id, title, yr
   FROM
     movies
   WHERE
     title LIKE ('Star Trek%')
   ORDER BY
     yr ASC;
+
   SQL
 end
 
@@ -72,11 +74,12 @@ def films_by_id
   # What are the titles of the films with id 1119, 1595, 1768?
   execute(<<-SQL)
   SELECT
-    movies.title
+    title
   FROM
     movies
   WHERE
-    movies.id IN (1119, 1595, 1768);
+    id IN (1119, 1595, 1768)
+
   SQL
 end
 
@@ -84,11 +87,12 @@ def glenn_close_id
   # What id number does the actress 'Glenn Close' have?
   execute(<<-SQL)
   SELECT
-    actors.id
+    id
   FROM
     actors
   WHERE
-    name = 'Glenn Close';
+    name = 'Glenn Close'
+
   SQL
 end
 
@@ -96,11 +100,12 @@ def casablanca_id
   # What is the id of the film 'Casablanca'?
   execute(<<-SQL)
   SELECT
-    movies.id
+    id
   FROM
     movies
   WHERE
-    title = 'Casablanca';
+    title = 'Casablanca'
+ 
   SQL
 end
 
@@ -113,29 +118,31 @@ def casablanca_cast
   FROM
     actors
   JOIN
-    castings ON actors.id = castings.actor_id
-  WHERE
+    castings ON castings.actor_id = actors.id
+  WHERE 
     castings.movie_id = 27;
+
   SQL
 end
 
 def alien_cast
   # Obtain the cast list for the film 'Alien'
   execute(<<-SQL)
-  SELECT 
+  SELECT
     actors.name
   FROM
     actors
   JOIN
-    castings ON actors.id = castings.actor_id
+    castings ON castings.actor_id = actors.id
   WHERE
     castings.movie_id = (
       SELECT
-        movies.id
+        id
       FROM
         movies
       WHERE
-       title = 'Alien'
-    );
+        title = 'Alien'
+    )
+  
   SQL
 end
